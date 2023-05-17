@@ -9,7 +9,7 @@ class Laptop
     private $display ="IPS 24 Zoll";
 
 
-    public function setArbeitsSpeicher (string $ramSize)   // Methodenkopf
+    public function setArbeitsSpeicher (string $ramSize)
     {
         $this->arbeitsSpeicher = $ramSize;
     }
