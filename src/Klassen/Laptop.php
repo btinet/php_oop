@@ -20,15 +20,3 @@ class Laptop
     }
 
 }
-
-$macBook = new Laptop();
-
-// Dem Attribut "arbeitsSpeicher" den Wer '4 GB' zuweisen
-
-// Ausgabe:
-print $macBook->getArbeitsSpeicher();
-
-$macBook->setArbeitsSpeicher("16 GB");
-
-// Ausgabe:
-print $macBook->getArbeitsSpeicher();
