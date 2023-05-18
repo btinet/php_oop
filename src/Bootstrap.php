@@ -12,6 +12,8 @@ class Bootstrap
 
     protected $controller;
 
+    protected $defaultController = "computer";
+
     public function __construct()
     {
         
@@ -26,8 +28,9 @@ class Bootstrap
 
     protected function getClass(): Bootstrap
     {
-        if(!$this->request->get("controller")) throw new LogicException("Key \"controller\" nicht gesetzt!");
-        $controllerClass = "App\\Controller\\" . ucfirst($this->request->get("controller")) . "Controller";
+        if(!$controllerName = $this->request->get("controller")) $controllerName = $this->defaultController;        
+        $controllerClass = "App\\Controller\\" . ucfirst($controllerName) . "Controller";
+        
         if(!class_exists($controllerClass)) throw new LogicException("Controller {$controllerClass} existiert nicht!"); 
         $this->controller = new $controllerClass();
 

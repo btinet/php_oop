@@ -64,9 +64,30 @@ abstract class AbstractComponent implements ComponentInterface
         return $this->attributes;
     }
 
+    public function addAttribute($key, $value = null)
+    {
+        if($key) {            
+            $this->attributes[$key] = $value;                     
+        } else {
+            $this->attributes[] = $value;
+        }
+    }
+
     public function render()
     {
-        $this->output ="<{$this->elementName}>";
+        $this->output ="<{$this->elementName}";
+        
+        foreach($this->attributes as $key => $value)
+        {
+            if($value == null)
+            {
+                $this->output .= " $key";
+            } else {
+                $this->output .= " {$key}='{$value}'";
+            }
+        }
+
+        $this->output .= ">";
 
         $arrayObject = new ArrayObject($this->children);
         $iterator = $arrayObject->getIterator();
