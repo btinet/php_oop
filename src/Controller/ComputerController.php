@@ -16,7 +16,7 @@ class ComputerController extends AbstractController
         $h1->setHeadlineType(ComponentInterface::H1);
        
         $p1 = new Paragraph(text: "Dies ist ein spannender Abstaz, der eigentlich nicht wirklich etwas thematisiert. ");
-        $p1->add(new Hyperlink(text: "MacBook ansehen",href: "?controller=computer&action=show"));
+        $p1->add(new Hyperlink(text: "MacBook ansehen", href: "?controller=computer&action=show"));
 
         echo $h1->render();
         echo $p1->render();
