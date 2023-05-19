@@ -17,7 +17,7 @@ class ComputerController extends AbstractController
         $h1->setHeadlineType(ComponentInterface::H1);
        
         $p1 = new Paragraph("Dies ist ein spannender Abstaz, der eigentlich nicht wirklich etwas thematisiert. ");
-        $p1->add(new Hyperlink(text: "MacBook ansehen", href: ["?controller=computer&action=show"]));
+        $p1->add(new Hyperlink("MacBook ansehen", $this->url(ComputerController::class,"show")));
 
         $p1->addAttribute('class',['text-bold']);
 
@@ -42,15 +42,19 @@ class ComputerController extends AbstractController
         $h1->setHeadlineType(ComponentInterface::H1);
        
         $p1 = new Paragraph("Werfen wir einen Blick auf das MacBook! ");
-        $p1->add(new Hyperlink(text: "Zur Übersicht",href: ["?controller=computer&action=index"]));
 
-        echo $h1->render();
-        echo $p1->render();
+        // Methode zum Generieren von Hyperlinks
+        $link = $this->url(
+            class: ComputerController::class,
+            method: "index"
+            );
+
+        $p1->add(new Hyperlink("Zur Übersicht",$link));
+
+        $this->root->add($h1);
+        $this->root->add($p1);
+
+        $this->render();
     }
-
-    // TODO: Methode in Oberklasse implementieren, die das Grundgerüst rendert und die erzeugten Elemente entgegennimmt.
-
-    // TODO: Methode für Hyerlink-Erstellungen entweder in Oberklasse oder in eine Enumeration auslagern.
-
 
 }

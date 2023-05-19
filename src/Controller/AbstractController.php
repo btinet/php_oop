@@ -8,6 +8,7 @@ use App\View\Component\Head;
 use App\View\Component\HTML;
 use App\View\Component\Meta;
 use App\View\Component\Title;
+use App\Model\Response;
 
 abstract class AbstractController
 {
@@ -16,9 +17,12 @@ abstract class AbstractController
     protected Title $title;
     protected Head $head;
     private HTML $html;
+    private Response $response;
 
     public function __construct()
     {
+        $this->response = new Response();
+
         $this->html = new HTML();
         $this->root = new Root();
         $this->head = new Head();
@@ -30,6 +34,16 @@ abstract class AbstractController
         $this->head->add(new Meta('charset','UTF-8'));
         $this->head->add($this->title);
     
+    }
+
+    protected function getResponse()
+    {
+        return $this->response;
+    }
+
+    protected function url(string $class, string $method, array $mandatory = null,$anchor = null): string
+    {
+        return $this->getResponse()->generateUrlFromString(class: $class, method: $method, mandatory: $mandatory, anchor: $anchor);
     }
 
     protected function render()
