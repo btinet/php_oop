@@ -48,7 +48,6 @@ abstract class AbstractComponent implements ComponentInterface
         
     }
 
-
     public function getParent()
     {
         return $this->parent;
@@ -70,7 +69,8 @@ abstract class AbstractComponent implements ComponentInterface
         if($this->getChildren()->offsetExists($key))
         {
             $oldElements = $this->getChildren()->offsetGet($key);
-            $allElements = array_merge($oldElements,$values);
+            print_r($oldElements);
+            $allElements = array_merge_recursive($oldElements,$values);
             $this->attributes[$key] = $allElements;
 
         } else {
@@ -101,14 +101,14 @@ abstract class AbstractComponent implements ComponentInterface
         {
             $current = $iterator->current();
             if($current instanceof AbstractComponent) {
-                $this->output .= $current->render();
+                $this->output .= PHP_EOL . $current->render();
             } else {
                 $this->output .= $current;
             }
             $iterator->next();
         }
 
-        $this->output .="</{$this->elementName}>";
+        $this->output .="</{$this->elementName}>". PHP_EOL;
 
         return $this->output;
     }

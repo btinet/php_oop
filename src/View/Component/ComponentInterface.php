@@ -4,7 +4,8 @@ namespace App\View\Component;
 
 interface ComponentInterface
 {
-
+    
+    public const DocTypeHtml = '<!DOCTYPE html>';
     public const H1 = "h1";
     public const H2 = "h2";
     public const H3 = "h3";

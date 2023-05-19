@@ -28,8 +28,12 @@ class ComputerController extends AbstractController
             $p1->addAttribute('class',['text-success']);
         }
 
-        echo $h1->render();
-        echo $p1->render();
+        $this->title->add("&Uuml;bersicht",'text');
+
+        $this->root->add($h1);
+        $this->root->add($p1);
+
+        $this->render();
     }
 
     public function show (): void
