@@ -15,6 +15,8 @@ class ComputerController extends AbstractController
 
     public function index (): void
     {
+        // TODO: extract view elements to own view classes
+
         $h1 = new Headline("Übersicht der Computer");
         $h1->setHeadlineType(ComponentInterface::H1);
        
