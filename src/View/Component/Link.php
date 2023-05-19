@@ -2,20 +2,20 @@
 
 namespace App\View\Component;
 
-class Meta extends AbstractComponent
+class Link extends AbstractComponent
 {
 
-    public function __construct(string $name, string $content)
+    public function __construct(string $rel, string $href)
     {
-        parent::__construct("meta");
-        $this->addAttribute('name',[$name]);
-        $this->addAttribute('content',[$content]);           
+        parent::__construct("link");
+        $this->addAttribute('rel',[$rel]);
+        $this->addAttribute('href',[$href]);
     }
 
     public function render(): string
     {
         $this->output ="<{$this->elementName}";
-        
+
         foreach($this->attributes as $key => $values)
         {
             if(empty($values))
