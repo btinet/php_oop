@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Controller\AbstractController;
+use JetBrains\PhpStorm\Pure;
 use ReflectionClass;
 use ReflectionException;
 
@@ -47,6 +48,11 @@ class Response
             die("Klasse existiert nicht");
         }
 
+    }
+
+    #[Pure] public function generateLink(string $target): string
+    {
+        return $this->getProtocol() . $_SERVER['HTTP_HOST'] . $target;
     }
 
     /**
