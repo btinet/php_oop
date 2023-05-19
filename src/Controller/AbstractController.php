@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 
+use App\View\Component\Link;
 use App\View\Component\Root;
 use App\View\Component\Head;
 use App\View\Component\HTML;
 use App\View\Component\Meta;
+use App\View\Component\Script;
 use App\View\Component\Title;
 use App\Model\Response;
 
@@ -32,11 +34,13 @@ abstract class AbstractController
         $this->html->add($this->root);
 
         $this->head->add(new Meta('charset','UTF-8'));
+        $this->head->add(new Meta('viewport','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'));
         $this->head->add($this->title);
+        $this->head->add(new Link('stylesheet',$this->getResponse()->generateLink('/assets/bootstrap/dist/css/bootstrap.min.css')));
     
     }
 
-    protected function getResponse()
+    protected function getResponse(): Response
     {
         return $this->response;
     }
@@ -48,6 +52,7 @@ abstract class AbstractController
 
     protected function render()
     {
+        $this->root->add(new Script($this->getResponse()->generateLink('/assets/bootstrap/dist/js/bootstrap.bundle.min.js')));
         echo $this->html->render();
     }
 

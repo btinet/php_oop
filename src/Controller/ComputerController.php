@@ -7,6 +7,8 @@ use App\View\Component\ComponentInterface;
 use App\View\Component\Headline;
 use App\View\Component\Hyperlink;
 use App\View\Component\Paragraph;
+use App\View\TwitterBootstrap\Button;
+use App\View\TwitterBootstrap\Container;
 
 class ComputerController extends AbstractController
 {
@@ -24,14 +26,31 @@ class ComputerController extends AbstractController
         if($color = Request::GET->get('color') and $color == 'red')
         {
             $p1->addAttribute('class',['text-danger']);
-        } else {
+        } else if($color = Request::GET->get('color') and $color == 'green') {
             $p1->addAttribute('class',['text-success']);
         }
 
         $this->title->add("&Uuml;bersicht",'text');
 
-        $this->root->add($h1);
-        $this->root->add($p1);
+        $container = new Container();
+        $container->add($h1);
+        $container->add($p1);
+
+        $container->add(
+            new Button(
+                'roter Text',
+                $this->url(ComputerController::class,"index",['color' => 'red']),
+                ['btn-danger'])
+        );
+
+        $container->add(
+            new Button(
+                'grüner Text',
+                $this->url(ComputerController::class,"index",['color' => 'green']),
+                ['btn-success'])
+        );
+
+        $this->root->add($container);
 
         $this->render();
     }
@@ -51,8 +70,10 @@ class ComputerController extends AbstractController
 
         $p1->add(new Hyperlink("Zur Übersicht",$link));
 
-        $this->root->add($h1);
-        $this->root->add($p1);
+        $container = new Container();
+        $container->add($h1);
+        $container->add($p1);
+        $this->root->add($container);
 
         $this->render();
     }
