@@ -5,9 +5,9 @@ namespace App\View\Component;
 class Headline extends AbstractComponent
 {
 
-    public function __construct(?AbstractComponent $parent = null, $text = null)
+    public function __construct($text = null)
     {
-        parent::__construct("h1", $parent);
+        parent::__construct("h1");
         if($text) $this->add($text);      
     }
 

@@ -5,11 +5,11 @@ namespace App\View\Component;
 class Hyperlink extends AbstractComponent
 {
 
-    public function __construct(?AbstractComponent $parent = null, $text = null, $href = null)
+    public function __construct($text = null, array $href = array())
     {
-        parent::__construct("a", $parent);
+        parent::__construct("a");
         if($text) $this->add($text);
-        if($href) $this->addAttribute("href",$href);         
+        if(!empty($href)) $this->addAttribute("href",$href);         
     }
 
 }

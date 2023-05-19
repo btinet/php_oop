@@ -8,17 +8,16 @@ use ArrayObject;
 abstract class AbstractComponent implements ComponentInterface
 {
     
-    protected $parent;
+    protected $parent = null;
     protected array $children = array();
     protected array $attributes = array();
     protected string $output = "";
 
     protected string $elementName;
 
-    public function __construct(string $elementName, ?AbstractComponent $parent = null)
+    public function __construct(string $elementName)
     {
         $this->elementName = $elementName;
-        $this->parent = $parent;
     }
 
     public function __toString()
@@ -34,7 +33,7 @@ abstract class AbstractComponent implements ComponentInterface
 
     public function getChildren()
     {
-        return $this->children;
+        return new ArrayObject($this->children);
     }
 
     public function add($element, $key = null)
@@ -49,6 +48,7 @@ abstract class AbstractComponent implements ComponentInterface
         
     }
 
+
     public function getParent()
     {
         return $this->parent;
@@ -59,31 +59,36 @@ abstract class AbstractComponent implements ComponentInterface
         $this->parent = $parent;
     }
 
+
     public function getAttributes()
     {
         return $this->attributes;
     }
 
-    public function addAttribute($key, $value = null)
+    public function addAttribute($key, array $values = array())
     {
-        if($key) {            
-            $this->attributes[$key] = $value;                     
+        if($this->getChildren()->offsetExists($key))
+        {
+            $oldElements = $this->getChildren()->offsetGet($key);
+            $allElements = array_merge($oldElements,$values);
+            $this->attributes[$key] = $allElements;
+
         } else {
-            $this->attributes[] = $value;
-        }
+            $this->attributes[$key] = $values;
+        }  
     }
 
     public function render()
     {
         $this->output ="<{$this->elementName}";
         
-        foreach($this->attributes as $key => $value)
+        foreach($this->attributes as $key => $values)
         {
-            if($value == null)
+            if(empty($values))
             {
                 $this->output .= " $key";
             } else {
-                $this->output .= " {$key}='{$value}'";
+                $this->output .= " {$key}='". implode(' ', $values) ."'";
             }
         }
 
