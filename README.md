@@ -72,6 +72,7 @@ class Controller extends \App\Controller\AbstractController
 ````
 erzeugt die Ausgabe:
 ````html
+<!DOCTYPE html>
 <html lang='de'>
     <head>
         <meta name='charset' content='UTF-8'>    
