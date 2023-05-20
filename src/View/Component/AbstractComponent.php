@@ -9,6 +9,7 @@ abstract class AbstractComponent implements ComponentInterface
     
     protected $parent = null;
     protected array $children = array();
+    protected array $prependedElements = array();
     protected array $attributes = array();
     protected string $output = "";
 
@@ -33,6 +34,11 @@ abstract class AbstractComponent implements ComponentInterface
     public function getChildren(): ArrayObject
     {
         return new ArrayObject($this->children);
+    }
+
+    public function prepend($element)
+    {
+        $this->prependedElements[] = $element;
     }
 
     public function add($element, $key = null)
@@ -75,7 +81,12 @@ abstract class AbstractComponent implements ComponentInterface
 
     public function render(): string
     {
-        $this->output ="<{$this->elementName}";
+        foreach ($this->prependedElements as $element)
+        {
+            $this->output .= $element . PHP_EOL;
+        }
+
+        $this->output .="<{$this->elementName}";
         
         foreach($this->attributes as $key => $values)
         {
