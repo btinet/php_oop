@@ -12,7 +12,7 @@ Beispiel für das Hinzufügen von Elementen zum Body-Tag (`$root`):
 ````php
 <?php
 
-class Controller extends \App\Controller\AbstractController
+class Controller extends AbstractController
 {
 
     public function index () 
