@@ -2,7 +2,6 @@
 
 namespace App\View\Component;
 
-use ArrayIterator;
 use ArrayObject;
 
 abstract class AbstractComponent implements ComponentInterface
@@ -25,13 +24,13 @@ abstract class AbstractComponent implements ComponentInterface
         return $this->elementName;
     }
 
-    protected function getElementName()
+    protected function getElementName(): string
     {
         return $this->elementName;
     }
 
 
-    public function getChildren()
+    public function getChildren(): ArrayObject
     {
         return new ArrayObject($this->children);
     }
@@ -59,26 +58,22 @@ abstract class AbstractComponent implements ComponentInterface
     }
 
 
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
 
     public function addAttribute($key, array $values = array())
     {
-        if($this->getChildren()->offsetExists($key))
+        if(key_exists($key,$this->attributes))
         {
-            $oldElements = $this->getChildren()->offsetGet($key);
-            print_r($oldElements);
-            $allElements = array_merge_recursive($oldElements,$values);
-            $this->attributes[$key] = $allElements;
-
+            $this->attributes[$key] = array_merge($this->attributes[$key],$values);
         } else {
             $this->attributes[$key] = $values;
         }  
     }
 
-    public function render()
+    public function render(): string
     {
         $this->output ="<{$this->elementName}";
         
