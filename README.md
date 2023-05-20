@@ -83,7 +83,8 @@ erzeugt die Ausgabe:
         <div class="container">
             <h1>Überschrift</h1>
             <p>Dies ist ein Absatz.</p>
-        </div>    
+        </div>
+        <script src='path/to/javascript.js'></script>
     </body>
 </html>
 ````
