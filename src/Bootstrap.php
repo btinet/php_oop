@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Controller\AbstractController;
 use App\Model\Request;
 use LogicException;
 
@@ -10,9 +11,9 @@ class Bootstrap
 
     protected Request $request = Request::GET;
 
-    protected $controller;
+    protected AbstractController $controller;
 
-    protected $defaultController = "computer";
+    protected string $defaultController = "computer";
 
     public function __construct()
     {
@@ -42,7 +43,7 @@ class Bootstrap
         if(!$method = $this->request->get("action")) $method = 'index';
         if(!method_exists($this->controller,$method)) throw new LogicException("Methode {$method} existiert nicht!");
 
-        $this->controller->$method();
+        echo $this->controller->$method();
     }
 
 }

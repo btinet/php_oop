@@ -19,7 +19,7 @@ class ComputerController extends AbstractController
 
     public const ColorMandatory = "color";
 
-    public function index (): void
+    public function index (): string
     {
         // TODO: extract view elements to own view classes
 
@@ -61,10 +61,10 @@ class ComputerController extends AbstractController
 
         $this->root->add($container);
 
-        $this->render();
+        return $this->render();
     }
 
-    public function show (): void
+    public function show (): string
     {
         $h1 = new Headline("MacBook genauer betrachten");
         $h1->setHeadlineType(ComponentInterface::H1);
@@ -84,7 +84,7 @@ class ComputerController extends AbstractController
         $container->add($p1);
         $this->root->add($container);
 
-        $this->render();
+        return $this->render();
     }
 
 }

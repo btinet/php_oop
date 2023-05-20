@@ -58,10 +58,10 @@ abstract class AbstractController
         return $this->getResponse()->generateUrlFromString(class: $class, method: $method, mandatory: $mandatory, anchor: $anchor);
     }
 
-    protected function render()
+    protected function render(): string
     {
         $this->root->add(new Script($this->getResponse()->generateLink('/assets/bootstrap/dist/js/bootstrap.bundle.min.js')));
-        echo $this->html->render();
+        return $this->html->render();
     }
 
 }
