@@ -50,7 +50,7 @@ Dies geschieht, indem direkt ``$this->render()`` aufgerufen wird.
 ````php
 <?php
 
-class Controller extends \App\Controller\AbstractController
+class Controller extends AbstractController
 {
 
     public function index () 
