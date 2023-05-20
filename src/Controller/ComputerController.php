@@ -93,8 +93,13 @@ class ComputerController extends AbstractController
         // Die Beschreibung für den Arbeitsspeicher weisen wir einer lokalen Variable zu.
         $macBookDescription = "Das Macbook hat {$macBook->getMemory(true)} Arbeitsspeicher.";
 
-        // Die Beschreibung soll als Absatz dargestellt und dem Container-Element angehängt werden.
-        $container->add(new Paragraph($macBookDescription));
+        // Die Beschreibung soll als Absatz dargestellt werden
+        $descriptionParagraph = new Paragraph($macBookDescription);
+        // Und der Text soll kursiv sein. Also fügen wir dem Attribut "class" die entsprechende css-Klasse hinzu.
+        $descriptionParagraph->addAttribute('class',[FontWeight::STYLE_ITALIC]);
+
+        // Der Absatz wird dem Container-Element angehängt.
+        $container->add($descriptionParagraph);
 
         $this->root->add($container);
 
