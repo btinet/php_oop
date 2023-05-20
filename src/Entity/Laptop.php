@@ -5,20 +5,27 @@ namespace App\Entity;
 class Laptop
 {
 
-    private $arbeitsSpeicher = "4 GB";
-    private $mainBoard = "AsRock X85D";
-    private $cpu = "Intel i5 6600T";
-    private $display ="IPS 24 Zoll";
+    private int $memory = 4;
+    private string $mainBoard = "AsRock X85D";
+    private string $cpu = "Intel i5 6600T";
+    private string $display ="IPS 24 Zoll";
 
 
-    public function setArbeitsSpeicher (string $ramSize)
+    /**
+     * @param string $ramSize Größe des Arbeitsspeichers als ganze Zahl in GB.
+     */
+    public function setMemory (string $ramSize)
     {
-        $this->arbeitsSpeicher = $ramSize;
+        $this->memory = $ramSize;
     }
 
-    public function getArbeitsSpeicher ()
+    /**
+     * @param bool $formatAsString Wenn auf true gesetzt, wird die Größe als String formatiert zurückgegeben.
+     * @return string|int Gibt die Größe des Arbeitsspeichers in GB zurück.
+     */
+    public function getMemory (bool $formatAsString = false): string|int
     {
-        return $this->arbeitsSpeicher;
+        return ($formatAsString) ? "{$this->memory} GB" : $this->memory;
     }
 
 }
