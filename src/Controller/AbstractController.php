@@ -45,6 +45,14 @@ abstract class AbstractController
         return $this->response;
     }
 
+    /**
+     * Diese Methode ist eine Abkürzung zur Response-Klasse, um eine Url zu generieren.
+     * @param string $class Klasse, auf die Verlinkt werden soll.
+     * @param string $method Die Methode der Klasse.
+     * @param array|null $mandatory Zusätzliche Parameter, die übergeben werden sollen als Array [Name => Parameter].
+     * @param null $anchor Anker auf Zielseite.
+     * @return string Gibt den kompletten Link inklusive Protokoll und Hostnamen zurück.
+     */
     protected function url(string $class, string $method, array $mandatory = null,$anchor = null): string
     {
         return $this->getResponse()->generateUrlFromString(class: $class, method: $method, mandatory: $mandatory, anchor: $anchor);
