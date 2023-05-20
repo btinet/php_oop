@@ -15,7 +15,7 @@ Beispiel für das Hinzufügen von Elementen zum Body-Tag (`$root`):
 class Controller extends AbstractController
 {
 
-    public function index () 
+    public function index (): string
     {        
         $h1 = new Headline("Überschrift");
         $paragraph = new Paragraph("Dies ist ein Absatz.");
@@ -25,7 +25,7 @@ class Controller extends AbstractController
         $container->add($paragraph);
         
         $this->root->add($container);        
-        $this->root->render();
+        return $this->root->render();
     }
 
 }
@@ -53,7 +53,7 @@ Dies geschieht, indem direkt ``$this->render()`` aufgerufen wird.
 class Controller extends AbstractController
 {
 
-    public function index () 
+    public function index (): string
     {        
         $h1 = new Headline("Überschrift");
         $paragraph = new Paragraph("Dies ist ein Absatz.");
@@ -64,7 +64,7 @@ class Controller extends AbstractController
                 
         $this->root->add($container);   
              
-        $this->render();
+        return $this->render();
     }
 
 }
