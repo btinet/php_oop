@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Laptop;
 use App\Model\Request;
 use App\View\Component\ComponentInterface;
 use App\View\Component\Headline;
@@ -82,6 +83,19 @@ class ComputerController extends AbstractController
         $container = new Container();
         $container->add($h1);
         $container->add($p1);
+
+        // Wir erzeugen ein neues Objekt vom Datentyp "Laptop".
+        $macBook = new Laptop();
+
+        // Unser MacBook bekommt natürlich 16 GB Arbeitsspeicher.
+        $macBook->setMemory(16);
+
+        // Die Beschreibung für den Arbeitsspeicher weisen wir einer lokalen Variable zu.
+        $macBookDescription = "Das Macbook hat {$macBook->getMemory(true)} Arbeitsspeicher.";
+
+        // Die Beschreibung soll als Absatz dargestellt und dem Container-Element angehängt werden.
+        $container->add(new Paragraph($macBookDescription));
+
         $this->root->add($container);
 
         return $this->render();
