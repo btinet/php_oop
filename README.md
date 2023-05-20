@@ -77,7 +77,7 @@ erzeugt die Ausgabe:
     <head>
         <meta name='charset' content='UTF-8'>    
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
-        <title>&Uuml;bersicht</title>
+        <title>Übersicht</title>
         <link rel='stylesheet' href='path/to/style.css'>
     </head>
     <body>
