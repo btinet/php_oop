@@ -7,15 +7,10 @@ use App\View\Component\Hyperlink;
 class Button extends Hyperlink
 {
 
-    public function __construct($text = 'a', string $href = null, array $buttonStyle = array())
+    public function __construct($text = 'a', string $href = null, string $buttonType = ButtonType::PRIMARY)
     {
         parent::__construct($text, $href);
-        if(!empty($buttonStyle)) {
-            $this->addAttribute("class",array_merge(['btn'],$buttonStyle));
-        } else {
-            $this->addAttribute("class",['btn', 'btn-primary']);
-        }
-
+        $this->addAttribute("class",['btn', $buttonType]);
     }
 
 }
