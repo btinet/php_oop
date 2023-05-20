@@ -80,7 +80,7 @@ erzeugt die Ausgabe:
         <link rel='stylesheet' href='path/to/style.css'>
     </head>
     <body>
-        <div class="container">
+        <div class='container'>
             <h1>Überschrift</h1>
             <p>Dies ist ein Absatz.</p>
         </div>
