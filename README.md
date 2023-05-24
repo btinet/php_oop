@@ -12,6 +12,12 @@ Beispiel für das Hinzufügen von Elementen zum Body-Tag (`$root`):
 ````php
 <?php
 
+namespace App\Controller;
+
+use App\View\Component\Headline;
+use App\View\Component\Paragraph;
+use App\View\TwitterBootstrap\Container;
+
 class Controller extends AbstractController
 {
 
@@ -49,6 +55,12 @@ Dies geschieht, indem direkt ``$this->render()`` aufgerufen wird.
 
 ````php
 <?php
+
+namespace App\Controller;
+
+use App\View\Component\Headline;
+use App\View\Component\Paragraph;
+use App\View\TwitterBootstrap\Container;
 
 class Controller extends AbstractController
 {
