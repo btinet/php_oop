@@ -8,7 +8,7 @@ class Computer
     # Attribute
 
     private string $producerName;
-    private int $ramSize;
+    private int $ramSize = 4;
     private int $hardDiskSize;
     private int $usbPorts;
 
