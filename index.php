@@ -23,9 +23,9 @@ function customAutoloader( $class )
 
 spl_autoload_register( 'customAutoloader' );
 
-$beispielComputer = new Computer(); // das funktioniert!
+$computer1 = new Computer(); // das funktioniert!
 
-echo $beispielComputer->getRamSize();
+echo $computer1->getRamSize();
 
 // App starten
 //$app = new Bootstrap();
