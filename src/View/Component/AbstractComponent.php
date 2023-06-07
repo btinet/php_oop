@@ -86,7 +86,7 @@ abstract class AbstractComponent implements ComponentInterface
             $this->output .= $element . PHP_EOL;
         }
 
-        $this->output .="<{$this->elementName}";
+        $this->output .="<$this->elementName";
         
         foreach($this->attributes as $key => $values)
         {
@@ -94,7 +94,7 @@ abstract class AbstractComponent implements ComponentInterface
             {
                 $this->output .= " $key";
             } else {
-                $this->output .= " {$key}='". implode(' ', $values) ."'";
+                $this->output .= " $key='". implode(' ', $values) ."'";
             }
         }
 
@@ -114,10 +114,9 @@ abstract class AbstractComponent implements ComponentInterface
             $iterator->next();
         }
 
-        $this->output .="</{$this->elementName}>". PHP_EOL;
+        $this->output .="</$this->elementName>". PHP_EOL;
 
         return $this->output;
     }
-
 
 }

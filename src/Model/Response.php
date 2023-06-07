@@ -14,6 +14,7 @@ class Response
     {
 
         $path ="";
+        $reflectionClass = null;
 
         try {
             if(new $class() instanceof AbstractController) {

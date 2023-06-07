@@ -2,10 +2,12 @@
 
 namespace App\View\Component;
 
+use JetBrains\PhpStorm\Pure;
+
 class Head extends AbstractComponent
 {
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         parent::__construct("head");       
     }
