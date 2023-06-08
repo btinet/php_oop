@@ -8,9 +8,11 @@ use App\View\Component\Headline;
 use App\View\Component\HeadlineType;
 use App\View\Component\Hyperlink;
 use App\View\Component\Paragraph;
+use App\View\Component\Segment;
 use App\View\TwitterBootstrap\Button;
 use App\View\TwitterBootstrap\ButtonType;
 use App\View\TwitterBootstrap\Color;
+use App\View\TwitterBootstrap\ComponentBuilder\ListGroupComponentBuilder;
 use App\View\TwitterBootstrap\Container;
 use App\View\TwitterBootstrap\FontWeight;
 use App\View\TwitterBootstrap\TextType;
@@ -37,28 +39,38 @@ class ComputerController extends AbstractController
             $p1->addAttribute('class',[TextType::DANGER]);
         } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::SUCCESS) {
             $p1->addAttribute('class',[TextType::SUCCESS]);
+        } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::INFO) {
+            $p1->addAttribute('class',[TextType::INFO]);
         }
+
+        $listGroupBuilder = new ListGroupComponentBuilder();
+        $listGroupBuilder
+            ->addListItem(new Segment("Dies ist ein Menüpunkt"))
+            ->addListItem(new Segment("Dies ist noch ein Menüpunkt"))
+            ->addListItem(new Hyperlink("Linktext",$this->url(ComputerController::class,"index",[self::ColorMandatory => Color::INFO])))
+        ;
 
         $this->title->add("&Uuml;bersicht",'text');
 
         $container = new Container();
 
-        $container->add($h1);
-        $container->add($p1);
-
-        $container->add(
-            new Button(
-                'roter Text',
-                $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::DANGER]),
-                ButtonType::DANGER)
-        );
-
-        $container->add(
-            new Button(
-                'grüner Text',
-                $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::SUCCESS]),
-                ButtonType::SUCCESS)
-        );
+        $container
+            ->add($h1)
+            ->add($p1)
+            ->add($listGroupBuilder->createListGroup())
+            ->add(
+                new Button(
+                    'roter Text',
+                    $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::DANGER]),
+                    ButtonType::DANGER)
+                )
+            ->add(
+                new Button(
+                    'grüner Text',
+                    $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::SUCCESS]),
+                    ButtonType::SUCCESS)
+                )
+        ;
 
         $this->root->add($container);
 

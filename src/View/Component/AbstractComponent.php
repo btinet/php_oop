@@ -7,7 +7,7 @@ use ArrayObject;
 abstract class AbstractComponent implements ComponentInterface
 {
     
-    protected $parent = null;
+    protected AbstractComponent|null $parent = null;
     protected array $children = array();
     protected array $prependedElements = array();
     protected array $attributes = array();
@@ -41,7 +41,7 @@ abstract class AbstractComponent implements ComponentInterface
         $this->prependedElements[] = $element;
     }
 
-    public function add($element, $key = null)
+    public function add($element, $key = null): AbstractComponent
     {
         if($element instanceof AbstractComponent) $element->setParent($this);
 
@@ -50,15 +50,15 @@ abstract class AbstractComponent implements ComponentInterface
         } else {
             $this->children[] = $element;
         }
-        
+        return $this;
     }
 
-    public function getParent()
+    public function getParent(): ?AbstractComponent
     {
         return $this->parent;
     }
 
-    public function setParent($parent)
+    public function setParent(AbstractComponent $parent)
     {
         $this->parent = $parent;
     }
