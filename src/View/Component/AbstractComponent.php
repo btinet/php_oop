@@ -69,7 +69,19 @@ abstract class AbstractComponent implements ComponentInterface
         return $this->attributes;
     }
 
-    public function addAttribute($key, array $values = array())
+    /**
+     * <p>
+     * Fügt dem aktuellen Element ein Attribut hinzu. Ist der zweite Parameter <b>null</b>, wird das Attribut alleinstehend
+     * ohne Zuweisung hinzugefügt.
+     * </p>
+     *
+     * <code>addAttribute("disabled")</code> erzeugt: <em>disabled</em><br>
+     * <code>addAttribute("disabled",["true"])</code> erzeugt: <em>disabled="true"</em><br>
+     *
+     * @param string $key Attribut, das dem aktuellen Element hinzugefügt werden soll.
+     * @param array $values Liste mit Attributwerten, die dem Attribut hinzugefügt werden sollen.
+     */
+    public function addAttribute(string $key, array $values = array()): void
     {
         if(key_exists($key,$this->attributes))
         {
@@ -77,6 +89,20 @@ abstract class AbstractComponent implements ComponentInterface
         } else {
             $this->attributes[$key] = $values;
         }  
+    }
+
+    /**
+     * Fügt dem aktuellen Element beliebig viele CSS-Klassen hinzu.
+     * @param array $values Liste mit CSS-Klassennamen, die auf das aktuelle Element angewendet werden sollen.
+     */
+    public function addStyle(array $values)
+    {
+        if(key_exists("class",$this->attributes))
+        {
+            $this->attributes["class"] = array_merge($this->attributes["class"],$values);
+        } else {
+            $this->attributes["class"] = $values;
+        }
     }
 
     public function render(): string
