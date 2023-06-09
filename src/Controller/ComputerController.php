@@ -3,76 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\Laptop;
-use App\Model\Request;
 use App\View\Component\Headline;
 use App\View\Component\HeadlineType;
 use App\View\Component\Hyperlink;
 use App\View\Component\Paragraph;
-use App\View\Component\Segment;
-use App\View\TwitterBootstrap\Button;
-use App\View\TwitterBootstrap\ButtonType;
-use App\View\TwitterBootstrap\Color;
-use App\View\TwitterBootstrap\ComponentBuilder\ListGroupComponentBuilder;
+use App\View\Page\Computer\ComputerIndex;
 use App\View\TwitterBootstrap\Container;
 use App\View\TwitterBootstrap\FontWeight;
-use App\View\TwitterBootstrap\TextType;
 
 class ComputerController extends AbstractController
 {
-
-    public const ColorMandatory = "color";
+    /*
+     * Ein Controller dient dazu, Daten vom Model zu verarbeiten und die View entsprechend anzupassen.
+     * Der Controller ist jedoch weder dafür zuständig, wie die Daten gespeichert oder abgerufen werden, noch
+     * kümmert er sich um die Aus- oder Eingabe der optischen Schicht.
+     */
 
     public function index (): string
     {
-        // TODO: extract view elements to own view classes
-
-        $h1 = new Headline("Übersicht der Computer");
-        $h1->setHeadlineType(HeadlineType::H1);
-       
-        $p1 = new Paragraph("Dies ist ein spannender Absatz, der eigentlich nicht wirklich etwas thematisiert. ");
-        $p1->add(new Hyperlink("MacBook ansehen", $this->url(ComputerController::class,"show")));
-
-        $p1->addAttribute('class',[FontWeight::BOLD]);
-
-        if($color = Request::GET->get(self::ColorMandatory) and $color == Color::DANGER)
-        {
-            $p1->addAttribute('class',[TextType::DANGER]);
-        } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::SUCCESS) {
-            $p1->addAttribute('class',[TextType::SUCCESS]);
-        } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::INFO) {
-            $p1->addAttribute('class',[TextType::INFO]);
-        }
-
-        $listGroupBuilder = new ListGroupComponentBuilder();
-        $listGroupBuilder
-            ->addListItem(new Segment("Dies ist ein Menüpunkt"))
-            ->addListItem(new Segment("Dies ist noch ein Menüpunkt"))
-            ->addListItem(new Hyperlink("Linktext",$this->url(ComputerController::class,"index",[self::ColorMandatory => Color::INFO])))
-        ;
-
         $this->title->add("&Uuml;bersicht",'text');
 
-        $container = new Container();
+        $view = new ComputerIndex();
 
-        $container
-            ->add($h1)
-            ->add($p1)
-            ->add($listGroupBuilder->createListGroup())
-            ->add(
-                new Button(
-                    'roter Text',
-                    $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::DANGER]),
-                    ButtonType::DANGER)
-                )
-            ->add(
-                new Button(
-                    'grüner Text',
-                    $this->url(ComputerController::class,"index",[self::ColorMandatory => Color::SUCCESS]),
-                    ButtonType::SUCCESS)
-                )
-        ;
-
-        $this->root->add($container);
+        $this->root->add($view->render());
 
         return $this->render();
     }
