@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\View\Component\ComponentInterface;
 use App\View\Component\Link;
 use App\View\Component\Root;
 use App\View\Component\Head;

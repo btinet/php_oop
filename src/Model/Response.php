@@ -51,7 +51,7 @@ class Response
 
     }
 
-    #[Pure] public function generateLink(string $target): string
+    #[Pure] public function generateLink(string $target = null): string
     {
         return $this->getProtocol() . $_SERVER['HTTP_HOST'] . $target;
     }

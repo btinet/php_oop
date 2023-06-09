@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Controller\AbstractController;
+use App\Controller\NotFoundController;
 use App\Model\Request;
 use LogicException;
 
@@ -22,7 +23,8 @@ class Bootstrap
             $this->getClass()->runMethod();
         } catch (LogicException $e)
         {
-            echo $e->getMessage();
+            $notFoundController = new NotFoundController();
+            echo $notFoundController->index();
         }
 
     }
