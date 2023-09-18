@@ -6,6 +6,7 @@ use App\Controller\ComputerController;
 use App\Model\Request;
 use App\Model\Response;
 use App\View\Component\AbstractComponent;
+use App\View\Component\Div;
 use App\View\Component\Headline;
 use App\View\Component\HeadlineType;
 use App\View\Component\Hyperlink;
@@ -62,10 +63,9 @@ class ComputerIndex
 
         $container = new Container();
 
-        $container
-            ->add($h1)
-            ->add($p1)
-            ->add($listGroupBuilder->createListGroup())
+        $buttonContainer = new Div();
+        $buttonContainer->addAttribute('class',['mt-3']);
+        $buttonContainer
             ->add(
                 new Button(
                     'roter Text',
@@ -78,6 +78,13 @@ class ComputerIndex
                     $this->response->generateUrlFromString(ComputerController::class,"index",[self::ColorMandatory => Color::SUCCESS]),
                     ButtonType::SUCCESS)
             )
+            ;
+
+        $container
+            ->add($h1)
+            ->add($p1)
+            ->add($listGroupBuilder->createListGroup())
+            ->add($buttonContainer)
         ;
 
         return $container;
