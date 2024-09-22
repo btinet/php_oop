@@ -21,7 +21,7 @@ class ComputerController extends AbstractController
 
     public function index (): string
     {
-        $this->title->add("&Uuml;bersicht",'text');
+        $this->title->add("Übersicht",'text');
 
         $view = new ComputerIndex();
 
@@ -46,8 +46,10 @@ class ComputerController extends AbstractController
         $p1->add(new Hyperlink("Zur Übersicht",$link));
 
         $container = new Container();
-        $container->add($h1);
-        $container->add($p1);
+        $container
+            ->add($h1)
+            ->add($p1)
+        ;
 
         // Wir erzeugen ein neues Objekt vom Datentyp "Laptop".
         $macBook = new Laptop();

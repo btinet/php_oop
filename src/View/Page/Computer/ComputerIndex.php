@@ -46,9 +46,9 @@ class ComputerIndex
         if($color = Request::GET->get(self::ColorMandatory) and $color == Color::DANGER)
         {
             $p1->addAttribute('class',[TextType::DANGER]);
-        } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::SUCCESS) {
+        } else if($color == Color::SUCCESS) {
             $p1->addAttribute('class',[TextType::SUCCESS]);
-        } else if($color = Request::GET->get(self::ColorMandatory) and $color == Color::INFO) {
+        } else if($color == Color::INFO) {
             $p1->addAttribute('class',[TextType::INFO]);
         }
 

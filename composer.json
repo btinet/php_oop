@@ -16,6 +16,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-      "ext-readline": "*"
+      "ext-readline": "*",
+        "smalot/pdfparser": "dev-master",
+        "mikehaertl/php-pdftk": "dev-master",
+      "ext-intl": "*"
     }
 }
