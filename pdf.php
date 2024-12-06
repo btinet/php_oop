@@ -9,15 +9,11 @@ require 'vendor/autoload.php';
 const project = __DIR__;
 
 // PDF-Formular
-$document = project . '/Anmeldung.pdf';
+$document = project . '/form.pdf';
 
 // PDFTK Server muss zuvor installiert werden (Windows/Mac/Linux)
 // https://www.pdflabs.com/tools/pdftk-server/
 // nach der Installation muss PhpStorm neu gestartet werden.
-$pdf = new Pdf($document);
-$pdf->fillForm(["Textfeld 3" => "Blümchen"]);
-$pdf->saveAs($document);
-
 $pdf = new Pdf($document);
 // Formularfelder holen
 $fields = $pdf->getDataFields();
